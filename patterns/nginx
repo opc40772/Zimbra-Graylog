@@ -1,0 +1,2 @@
+NGUSER %{DATA}
+NGINXACCESS %{IPORHOST:clientip}:%{POSINT:port} %{NGUSER:ident} %{NGUSER:username} \[%{HTTPDATE:created_at}\]  "%{WORD:verb} %{URIPATHPARAM:request} HTTP/%{NUMBER:httpversion}" %{NUMBER:http_code} (?:%{NUMBER:bytes:int}|-) (?:"(?:%{URI:referrer}|-)"|%{QS:referrer}) %{QS:agent}

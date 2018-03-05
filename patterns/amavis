@@ -1,0 +1,17 @@
+AMAVISSTATUS (?:Passed|Blocked)
+AMAVIS_THREAD \(%{DATA:thread}\)
+AMAVIS_COMP amavis(?:\[%{POSINT:pid}\])?: %{AMAVIS_THREAD}
+AMAVIS %{TIMESTAMP_ISO8601:created_at} %{SYSLOGHOST:hostname} %{AMAVIS_COMP}
+
+AMAVISORGEXT %{DATA}(\/%{DATA:src_net})? %{RELAYIPPORT:local_ip}:%{NONNEGINT:relay_port}( %{RELAYIPPORT:remote_ip})?
+AMAVISORGINT  ORIGINATING_POST \[127.0.0.1\]
+AMAVISORGCON (?:%{AMAVISORGEXT}|%{AMAVISORGINT})
+
+# Amavis check
+AMAVIS_FILECHECK ESMTP:%{RELAYIPPORT}:%{NONNEGINT:relay_port} %{DATA:quarantine_file}: <(?:%{FROMEMAILADDRESS:from})?> -> %{DATA:to}( SIZE=%{POSINT:size})? Received: %{GREEDYDATA:summary}
+
+AMAVIS_CHECKING Checking: %{DATA:amavis_mail_id} %{DATA:amavis_src_net} %{RELAYIPPORT} <(?:%{FROMEMAILADDRESS:from})?> -> %{GREEDYDATA:to}
+
+AMAVIS_DKIM FWD from <(?:%{FROMEMAILADDRESS:from})?> -> %{DATA:to},( BODY=%{DATA:amavis_body})? 250 2.0.0 from MTA\(smtp:%{RELAYIPPORT}:%{NONNEGINT:relay_port}\): 250 2.0.0 Ok: queued as %{QUEUEID:queued_as}
+
+AMAVISRESULT %{AMAVISSTATUS:status} %{DATA:result} (\(%{DATA:result_summary}\) )?\{%{DATA:actions}\},( %{AMAVISORGCON})? <(?:%{FROMEMAILADDRESS:from})?> -> %{DATA:to}(, quarantine: %{DATA:quarantine})?(, Queue-ID: %{QUEUEID:qid})?(, Message-ID: <%{DATA:messageid}>)?(, mail_id: %{DATA:mail_id})?(, Hits: %{DATA:hits})?(, size: %{NONNEGINT:size:int})?(, queued_as: %{QUEUEID:queued_as})?(, dkim_sd=%{DATA:dkim_sd})?, %{NONNEGINT:delay} ms

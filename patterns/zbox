@@ -1,0 +1,5 @@
+# Postfix Subject Debug
+ZBOX_SUBJECT %{QUEUEID:qid}: info: header Subject:( )?%{DATA:subject} from %{SRCRELAY}; from=<%{FROMEMAILADDRESS:from}> to=<%{TOEMAILADDRESS:to}> %{DATA}: ZBOX_SUBJECT$
+
+# Postfix Attachment Debug
+ZBOX_ATTACHMENT %{QUEUEID:qid}: info: header Content-Disposition: %{DATA:content_disposition};(%{DATA})filename=%{DATA:attachment} from %{SRCRELAY}; from=<(%{FROMEMAILADDRESS:from})?> to=<(%{TOEMAILADDRESS:to})?> %{DATA}: ZBOX_ATTACHMENT$

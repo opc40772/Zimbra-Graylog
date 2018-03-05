@@ -1,0 +1,56 @@
+COMP ([\w._\/%-]+)
+COMPID %{COMP:process}\/%{COMP:component}(?:\[%{POSINT:pid}\])?
+POSTFIX %{TIMESTAMP_ISO8601:created_at} %{SYSLOGHOST:hostname} %{COMPID}:
+
+# Postfix stuff based on https://gist.github.com/jbrownsc/4694374:
+
+QUEUEID (?:[a-zA-Z0-9]+|NOQUEUE)
+EMAILADDRESSPART [a-zA-Z0-9_.+-=:]+
+EMAILADDRESS %{EMAILADDRESSPART}@%{EMAILADDRESSPART}
+FROMEMAILADDRESS %{EMAILADDRESSPART}@%{EMAILADDRESSPART:from_domain}
+TOEMAILADDRESS %{EMAILADDRESSPART}@%{EMAILADDRESSPART:to_domain}
+RELAY (?:%{HOSTNAME:relayhost}(?:\[%{IP:relayip}\](?::[0-9]+(.[0-9]+)?)?)?)
+SRCRELAY (?:%{HOSTNAME:src_relayhost}(?:\[%{IP:src_relayip}\](?::[0-9]+(.[0-9]+)?)?)?)
+DSTRELAY (?:%{HOSTNAME:dst_relayhost}(?:\[%{IP:dst_relayip}\](?::[0-9]+(.[0-9]+)?)?)?)
+CLIENT (?:%{HOSTNAME:clienthost}(?:\[%{IP:clientip}\](?::[0-9]+(.[0-9]+)?)?)?)
+POSREAL [0-9]+(.[0-9]+)?
+DELAYS (%{POSREAL}[/]*)+
+DSN %{NONNEGINT}.%{NONNEGINT}.%{NONNEGINT}
+STATUS sent|deferred|bounced|expired
+PERMERROR 5[0-9]{2}
+MESSAGELEVEL reject|warning|error|fatal|panic
+POSTFIXACTION discard|dunno|filter|hold|ignore|info|prepend|redirect|replace|reject|warn
+RELAYIPPORT (?:\[%{IP:relayip}\])
+
+# postfix/smtp and postfix/lmtp and postfix/local
+POSTFIXSMTPRELAY %{QUEUEID:qid}: to=<%{TOEMAILADDRESS:to}>,(?:\sorig_to=<%{TOEMAILADDRESS:orig_to}>,)? relay=%{DSTRELAY},( conn_use=%{NUMBER:conn_use},)? delay=%{POSREAL:delay}, delays=%{DELAYS:delays}, dsn=%{DSN:dsn}, status=%{WORD:result}( \(%{GREEDYDATA:result_comment}\))?
+POSTFIXSMTPRELAYGENERAL %{POSTFIXSMTPRELAY} \(%{DATA:reason}\)$
+#POSTFIXSMTPRELAY_TO_DKIM %{POSTFIXSMTPRELAY} \(250 2.0.0 from MTA\(smtp:\[127.0.0.1\]:10030\): 250 2.0.0 Ok: queued as %{QUEUEID:queued_as}\)
+POSTFIXSMTPRELAY_TO_DKIM %{POSTFIXSMTPRELAY} \(%{DATA:reason}: queued as %{QUEUEID:queued_as}\)
+POSTFIXSMTPCONNECT connect to %{DSTRELAY}: %{GREEDYDATA:reason}
+POSTFIXSMTP4XX %{QUEUEID:qid}: host %{DSTRELAY} said: %{GREEDYDATA:reason}
+POSTFIXSMTP5XX %{QUEUEID:qid}: to=<%{TOEMAILADDRESS:to}>,(?:\sorig_to=<%{TOEMAILADDRESS:orig_to}>,)? relay=%{DSTRELAY}, delay=%{POSREAL:delay}, delays=%{DELAYS:delays}, dsn=%{DSN:dsn}, status=%{STATUS:result} \(host %{HOSTNAME}\[%{IP}\] said: %{PERMERROR:responsecode} %{DATA:smtp_response} \(in reply to %{DATA:command} command\)\)
+POSTFIXSMTPREFUSAL %{QUEUEID:qid}: host %{DSTRELAY} refused to talk to me: %{GREEDYDATA:reason}
+POSTFIXSMTPLOSTCONNECTION %{QUEUEID:qid}: lost connection with %{DSTRELAY} while %{GREEDYDATA:reason}
+POSTFIXSMTPTIMEOUT %{QUEUEID:qid}: conversation with %{DSTRELAY} timed out while %{GREEDYDATA:reason}
+POSTFIXPOSTSUPER %{QUEUEID:qid}: %{GREEDYDATA:action}
+
+# postfix/smtpd
+POSTFIXSMTPDTLSCONNECT TLS connection established from %{SRCRELAY}: %{GREEDYDATA:tls_info}
+POSTFIXSMTPDCONNECT connect from %{SRCRELAY}
+POSTFIXSMTPDDISCONNECT disconnect from %{SRCRELAY}
+POSTFIXSMTPDACTIONS %{QUEUEID:qid}: %{POSTFIXACTION:action}: %{DATA:command} from %{SRCRELAY}: %{DATA:smtp_response}: %{DATA:reason}; from=<%{FROMEMAILADDRESS:from}> to=<%{TOEMAILADDRESS:to}> proto=%{DATA:proto} helo=<%{IPORHOST}>
+POSTFIXSMTPDTIMEOUTS timeout after %{DATA:command} from %{SRCRELAY}
+POSTFIXSMTPDSETQIDWITHSASL %{QUEUEID:qid}: client=%{CLIENT}, sasl_method=%{DATA:saslmethod}, sasl_username=%{GREEDYDATA:username}
+POSTFIXSMTPDSETQID %{QUEUEID:qid}: client=%{CLIENT}$
+POSTFIXSMTPDLOGINFAILED warning: %{CLIENT}: SASL LOGIN authentication failed: authentication failure
+POSTFIXSMTPDCLIENT %{QUEUEID:qid}: client=%{SRCRELAY:client}$
+
+# postfix/cleanup
+POSTFIXCLEANUP %{QUEUEID:qid}: message-id=(<)?%{DATA:messageid}(>)?$
+
+# postfix/bounce
+POSTFIXBOUNCE %{QUEUEID:qid}: sender non-delivery notification: %{QUEUEID:bouncequeueid}
+
+# postfix/qmgr and postfix/pickup
+POSTFIXQMGR %{QUEUEID:qid}: (?:removed|from=<(?:%{FROMEMAILADDRESS:from})?>(?:, size=%{POSINT:size}, nrcpt=%{POSINT:nrcpt} \(%{GREEDYDATA:queuestatus}\))?)

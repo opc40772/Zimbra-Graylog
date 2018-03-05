@@ -1,0 +1,7 @@
+#SASL
+SASLSTATUS (?:failed|OK)
+SASLEMAIL (?:\[%{EMAILADDRESS:email}\])
+
+SASL_COM saslauthd(?:\[%{POSINT:pid}\])?: %{DATA:provider}:
+SASLAUTHD %{TIMESTAMP_ISO8601:created_at} %{SYSLOGHOST:hostname} %{SASL_COM}
+SASLRESULT %{EMAILADDRESS:username} auth %{SASLSTATUS:result}(: authentication failed for %{SASLEMAIL})?

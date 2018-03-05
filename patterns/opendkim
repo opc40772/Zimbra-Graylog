@@ -1,0 +1,3 @@
+OPENDKIM_COMP opendkim(?:\[%{POSINT:pid}\])?:
+OPENDKIM_COMMENT %{DATA:comment}
+OPENDKIM %{TIMESTAMP_ISO8601:created_at} %{SYSLOGHOST:hostname} %{OPENDKIM_COMP} %{QUEUEID}: %{DATA:comment} '%{EMAILADDRESS:email}'
