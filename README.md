@@ -1,2 +1,2 @@
 # Graylog
-Graylog Extractor, Grok patterns for zimbra, squid and pfsense
+Graylog Extractor and Grok patterns for zimbra
