@@ -1,0 +1,483 @@
+{
+  "order": 0,
+  "template": "zimbra_*",
+  "settings": {},
+  "mappings": {
+    "message": {
+      "properties": {
+        "ADDING_MESSAGE_OP": {
+          "type": "keyword"
+        },
+        "AMAVISORGCON": {
+          "type": "keyword"
+        },
+        "AMAVISORGEXT": {
+          "type": "keyword"
+        },
+        "AMAVISRESULT": {
+          "type": "keyword"
+        },
+        "BASE10NUM": {
+          "type": "keyword"
+        },
+        "CLIENT": {
+          "type": "keyword"
+        },
+        "DATA": {
+          "type": "keyword"
+        },
+        "DELETING_MESSAGE_OP": {
+          "type": "keyword"
+        },
+        "DSTRELAY": {
+          "type": "keyword"
+        },
+        "EMAILADDRESSPART": {
+          "type": "keyword"
+        },
+        "HOSTNAME": {
+          "type": "keyword"
+        },
+        "HOUR": {
+          "type": "keyword"
+        },
+        "INT": {
+          "type": "keyword"
+        },
+        "IP": {
+          "type": "keyword"
+        },
+        "IPORHOST": {
+          "type": "keyword"
+        },
+        "IPV4": {
+          "type": "keyword"
+        },
+        "IPV4_city_name": {
+          "type": "keyword"
+        },
+        "IPV4_country_code": {
+          "type": "keyword"
+        },
+        "IPV4_geolocation": {
+          "type": "keyword"
+        },
+        "MAILBOX_COMMAND": {
+          "type": "keyword"
+        },
+        "MINUTE": {
+          "type": "keyword"
+        },
+        "MONTH": {
+          "type": "keyword"
+        },
+        "MONTHDAY": {
+          "type": "keyword"
+        },
+        "MONTHNUM": {
+          "type": "keyword"
+        },
+        "MOVING_MESSAGE_OP": {
+          "type": "keyword"
+        },
+        "NGINXACCESS": {
+          "type": "keyword"
+        },
+        "NONNEGINT": {
+          "type": "keyword"
+        },
+        "POSREAL": {
+          "type": "keyword"
+        },
+        "POSTFIXCLEANUP": {
+          "type": "keyword"
+        },
+        "POSTFIXQMGR": {
+          "type": "keyword"
+        },
+        "POSTFIXSMTPDACTIONS": {
+          "type": "keyword"
+        },
+        "POSTFIXSMTPDCONNECT": {
+          "type": "keyword"
+        },
+        "POSTFIXSMTPDDISCONNECT": {
+          "type": "keyword"
+        },
+        "POSTFIXSMTPDSETQID": {
+          "type": "keyword"
+        },
+        "POSTFIXSMTPDSETQIDWITHSASL": {
+          "type": "keyword"
+        },
+        "POSTFIXSMTPDTIMEOUTS": {
+          "type": "keyword"
+        },
+        "POSTFIXSMTPDTLSCONNECT": {
+          "type": "keyword"
+        },
+        "POSTFIXSMTPRELAY": {
+          "type": "keyword"
+        },
+        "POSTFIXSMTPRELAYGENERAL": {
+          "type": "keyword"
+        },
+        "QUOTEDSTRING": {
+          "type": "keyword"
+        },
+        "SASLRESULT": {
+          "type": "keyword"
+        },
+        "SECOND": {
+          "type": "keyword"
+        },
+        "SRCRELAY": {
+          "type": "keyword"
+        },
+        "TIME": {
+          "type": "keyword"
+        },
+        "URIHOST": {
+          "type": "keyword"
+        },
+        "URIPARAM": {
+          "type": "keyword"
+        },
+        "URIPATH": {
+          "type": "keyword"
+        },
+        "URIPATHPARAM": {
+          "type": "keyword"
+        },
+        "URIPROTO": {
+          "type": "keyword"
+        },
+        "YEAR": {
+          "type": "keyword"
+        },
+        "ZMAUDIT": {
+          "type": "keyword"
+        },
+        "ZMCLIENT": {
+          "type": "keyword"
+        },
+        "ZMCOMMAND": {
+          "type": "keyword"
+        },
+        "ZMLOGLEVEL": {
+          "type": "keyword"
+        },
+        "ZMMAILBOX": {
+          "type": "keyword"
+        },
+        "ZMPROCESS": {
+          "type": "keyword"
+        },
+        "ZMPROGRAM": {
+          "type": "keyword"
+        },
+        "ZMQTP": {
+          "type": "keyword"
+        },
+        "ZMTHREAD": {
+          "type": "keyword"
+        },
+        "ZMUSERAGENT": {
+          "type": "keyword"
+        },
+        "action": {
+          "type": "keyword"
+        },
+        "actions": {
+          "type": "keyword"
+        },
+        "agent": {
+          "type": "keyword"
+        },
+        "bytes": {
+          "type": "long"
+        },
+        "clienthost": {
+          "type": "keyword"
+        },
+        "clientip": {
+          "type": "keyword"
+        },
+        "clientip_city_name": {
+          "type": "keyword"
+        },
+        "clientip_country_code": {
+          "type": "keyword"
+        },
+        "clientip_geolocation": {
+          "type": "keyword"
+        },
+        "command": {
+          "type": "keyword"
+        },
+        "created_at": {
+          "type": "keyword"
+        },
+        "delay": {
+          "type": "keyword"
+        },
+        "delays": {
+          "type": "keyword"
+        },
+        "delegated_username": {
+          "type": "keyword"
+        },
+        "dsn": {
+          "type": "keyword"
+        },
+        "dst_relayhost": {
+          "type": "keyword"
+        },
+        "dst_relayip": {
+          "type": "keyword"
+        },
+        "dst_relayip_city_name": {
+          "type": "keyword"
+        },
+        "dst_relayip_country_code": {
+          "type": "keyword"
+        },
+        "elapsed": {
+          "type": "keyword"
+        },
+        "facility": {
+          "type": "keyword"
+        },
+        "file": {
+          "type": "keyword"
+        },
+        "folder_id": {
+          "type": "keyword"
+        },
+        "folder_name": {
+          "type": "keyword"
+        },
+        "from": {
+          "type": "keyword"
+        },
+        "from_domain": {
+          "type": "keyword"
+        },
+        "full_message": {
+          "type": "text",
+          "analyzer": "standard"
+        },
+        "gl2_remote_ip": {
+          "type": "keyword"
+        },
+        "gl2_remote_port": {
+          "type": "keyword"
+        },
+        "gl2_source_input": {
+          "type": "keyword"
+        },
+        "gl2_source_node": {
+          "type": "keyword"
+        },
+        "hits": {
+          "type": "keyword"
+        },
+        "http_code": {
+          "type": "keyword"
+        },
+        "httpversion": {
+          "type": "keyword"
+        },
+        "ident": {
+          "type": "keyword"
+        },
+        "input_type": {
+          "type": "keyword"
+        },
+        "item_id": {
+          "type": "keyword"
+        },
+        "item_type": {
+          "type": "keyword"
+        },
+        "level": {
+          "type": "keyword"
+        },
+        "local_ip": {
+          "type": "keyword"
+        },
+        "mail_id": {
+          "type": "keyword"
+        },
+        "message": {
+          "type": "text",
+          "analyzer": "standard"
+        },
+        "messageid": {
+          "type": "keyword"
+        },
+        "mid": {
+          "type": "keyword"
+        },
+        "name": {
+          "type": "keyword"
+        },
+        "nrcpt": {
+          "type": "keyword"
+        },
+        "offset": {
+          "type": "long"
+        },
+        "orig_to": {
+          "type": "keyword"
+        },
+        "parent_id": {
+          "type": "keyword"
+        },
+        "program_info": {
+          "type": "keyword"
+        },
+        "proto": {
+          "type": "keyword"
+        },
+        "protocol": {
+          "type": "keyword"
+        },
+        "qid": {
+          "type": "keyword"
+        },
+        "qtp_info": {
+          "type": "keyword"
+        },
+        "qtp_process": {
+          "type": "keyword"
+        },
+        "qtp_thread": {
+          "type": "keyword"
+        },
+        "queued_as": {
+          "type": "keyword"
+        },
+        "queuestatus": {
+          "type": "keyword"
+        },
+        "reason": {
+          "type": "keyword"
+        },
+        "relay_port": {
+          "type": "keyword"
+        },
+        "relayip": {
+          "type": "keyword"
+        },
+        "relayip_city_name": {
+          "type": "keyword"
+        },
+        "relayip_country_code": {
+          "type": "keyword"
+        },
+        "relayip_geolocation": {
+          "type": "keyword"
+        },
+        "remote_ip": {
+          "type": "keyword"
+        },
+        "request": {
+          "type": "keyword"
+        },
+        "result": {
+          "type": "keyword"
+        },
+        "saslmethod": {
+          "type": "keyword"
+        },
+        "size": {
+          "type": "long"
+        },
+        "smtp_response": {
+          "type": "keyword"
+        },
+        "src_ip": {
+          "type": "keyword"
+        },
+        "src_net": {
+          "type": "keyword"
+        },
+        "src_relayhost": {
+          "type": "keyword"
+        },
+        "src_relayip": {
+          "type": "keyword"
+        },
+        "src_relayip_city_name": {
+          "type": "keyword"
+        },
+        "src_relayip_country_code": {
+          "type": "keyword"
+        },
+        "status": {
+          "type": "keyword"
+        },
+        "streams": {
+          "type": "keyword"
+        },
+        "thread": {
+          "type": "keyword"
+        },
+        "timestamp": {
+          "type": "date",
+          "format": "yyyy-MM-dd HH:mm:ss.SSS"
+        },
+        "timestamp_graf": {
+          "type": "date",
+          "format": "yyyy-MM-dd HH:mm:ss.SSSZ"
+        },
+        "tls_info": {
+          "type": "keyword"
+        },
+        "to": {
+          "type": "keyword"
+        },
+        "to_domain": {
+          "type": "keyword"
+        },
+        "type": {
+          "type": "keyword"
+        },
+        "user_agent": {
+          "type": "keyword"
+        },
+        "user_agent_ver": {
+          "type": "keyword"
+        },
+        "username": {
+          "type": "keyword"
+        },
+        "verb": {
+          "type": "keyword"
+        },
+        "via": {
+          "type": "keyword"
+        },
+        "zm_process": {
+          "type": "keyword"
+        },
+        "src_relayip_geolocation": {
+          "type": "string",
+          "copy_to": "src_location"
+        },
+        "src_location": {
+          "type": "geo_point"
+        },
+        "dst_relayip_geolocation": {
+          "type": "string",
+          "copy_to": "dst_location"
+        },
+        "dst_location": {
+          "type": "geo_point"
+        }
+      }
+    }
+  },
+  "aliases": {}
+}
