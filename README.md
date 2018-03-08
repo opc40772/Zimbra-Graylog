@@ -1,4 +1,3 @@
-![Logo](https://www.sysadminsdecuba.com/wp-content/uploads/2018/03/Graylog_-_Stream_Zimbra_-_Search_-_2018-03-05_19.png)
 # Graylog Server.
 
 Graylog version: 2.4
