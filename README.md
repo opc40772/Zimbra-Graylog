@@ -1,4 +1,4 @@
-# Graylog Zimbra.
+# Graylog Server.
 
 Graylog version: 2.4
 
@@ -18,7 +18,7 @@ Create indice for zimbra. In System / Indices. The index prefix must be zibra as
 This is important for the proper functioning of the streams.
 ![alt text](https://www.sysadminsdecuba.com/wp-content/uploads/2018/03/Graylog_-_Indices_and_Index_Sets_-_2018-03-07_13.png)
 
-# In server zimbra 
+# Zimbra Server
 
 You must install filebeat 5.6.x or any of the versions compatible with the version of elasticsearch 5.6.x. See [Matrix compatibility](https://www.elastic.co/support/matrix#matrix_compatibility)
 
