@@ -4,7 +4,7 @@ Graylog version: 2.4
 
 Elasticsearch version: 5.6.8
 
-Create indice for zimbra. In System / Indices. The index prefix must be zibra as the image show. 61/5000
+Create indice for zimbra. In System / Indices. The index prefix must be zimbra as the image show.
 This is important for the proper functioning of the streams.
 ![alt text](https://www.sysadminsdecuba.com/wp-content/uploads/2018/03/Graylog_-_Indices_and_Index_Sets_-_2018-03-07_13.png)
 
