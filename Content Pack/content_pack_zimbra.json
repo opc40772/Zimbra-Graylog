@@ -1,7 +1,7 @@
 {
    "name":"Zimbra Content Pack",
    "description":"Grok patterns, Beat Input, and Stream for zimbra",
-   "category":"Grok, Inputs, Stream",
+   "category":"Zimbra",
    "inputs":[
       {
          "id":"5a90d35e687cf800cf991a7e",
