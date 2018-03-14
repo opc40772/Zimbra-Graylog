@@ -428,9 +428,8 @@
           "type": "date",
           "format": "yyyy-MM-dd HH:mm:ss.SSS"
         },
-        "timestamp_graf": {
-          "type": "date",
-          "format": "yyyy-MM-dd HH:mm:ss.SSSZ"
+        "real_timestamp": {
+          "type": "date"
         },
         "tls_info": {
           "type": "keyword"
