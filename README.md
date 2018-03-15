@@ -72,3 +72,4 @@ We will only modify the sessions of Filebeat prospectors and Logstash output.
     #ssl.key: "/etc/pki/client/cert.key"
 
 The host in Logstash output section is graylog server.
+
