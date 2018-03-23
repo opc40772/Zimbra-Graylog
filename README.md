@@ -8,7 +8,7 @@ Create indice for zimbra. In System / Indices. The index prefix must be zimbra a
 This is important for the proper functioning of the streams.
 ![alt text](https://www.sysadminsdecuba.com/wp-content/uploads/2018/03/Graylog_-_Indices_and_Index_Sets_-_2018-03-07_13.png)
 
-Upload de file in forder Content Pack.
+Upload the file in folder Content Pack.
 
 ![alt text](https://www.sysadminsdecuba.com/wp-content/uploads/2018/03/Graylog_-_Content_packs_-_2018-03-08_10.32.39.png)
 
