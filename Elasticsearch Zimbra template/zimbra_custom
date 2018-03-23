@@ -1,7 +1,11 @@
 {
   "order": 0,
   "template": "zimbra_*",
-  "settings": {},
+  "settings": {
+    "index": {
+      "max_result_window": "1000000"
+    }
+  },
   "mappings": {
     "message": {
       "properties": {
